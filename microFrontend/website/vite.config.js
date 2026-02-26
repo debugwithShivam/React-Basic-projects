@@ -7,8 +7,6 @@ export default defineConfig({
     federation({
       remotes:{
       home: 'http://localhost:4173/assets/remoteEntry.js',
-      about: 'http://localhost:4174/assets/remoteEntry.js',
-      products: 'http://localhost:4176/assets/remoteEntry.js'
       },
        shared: {
     react: { singleton: true },
