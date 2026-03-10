@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { lazy } from 'react'
 import Layout from './Layout.jsx'
 import { Suspense } from 'react'
-const RemoteLayout  = lazy(() => import('Layout/Layout'))
+const RemoteLayout = lazy(() => import('Layout/Layout'))
 
 const router = createBrowserRouter([
   {
@@ -14,12 +14,12 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-         index: true,
-        element:<Suspense fallback={<h1>Loading...</h1>}>
-            <RemoteLayout  />
-          </Suspense>
+        index: true,
+        element: <Suspense fallback={<h1>Loading...</h1>}>
+          <RemoteLayout />
+        </Suspense>
       }
-      
+
     ]
   }
 ])
