@@ -12,8 +12,12 @@ function createWindow() {
     // Menu bar remove karega
     win.setMenu(null)
     win.loadFile('index.html')
+    // Opening Developer Tools in Electro
+    win.webContents.openDevTools(); 
 }
 
 app.whenReady().then(createWindow);
 
-
+app.on("window-all-closed",()=>{
+    if(process.platform !== 'darwin') app.quit();
+})

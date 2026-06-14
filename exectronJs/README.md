@@ -263,3 +263,184 @@ Electron
 ```
 
 Because of this combination, Electron allows developers to build cross-platform desktop applications for Windows, Linux, and macOS using HTML, CSS, and JavaScript.
+
+# Opening Developer Tools in Electron
+
+## Code
+
+```javascript
+win.webContents.openDevTools();
+```
+
+## What is `webContents`?
+
+Every `BrowserWindow` in Electron contains a `webContents` object.
+
+`webContents` represents the Chromium web page running inside that window. It gives you control over the webpage, such as:
+
+* Opening Developer Tools
+* Reloading the page
+* Executing JavaScript inside the page
+* Managing navigation
+* Listening for page events
+
+---
+
+## What does `openDevTools()` do?
+
+```javascript
+win.webContents.openDevTools();
+```
+
+This opens Chromium's Developer Tools for the current Electron window.
+
+It is similar to pressing:
+
+```
+F12
+```
+
+or:
+
+```
+Ctrl + Shift + I
+```
+
+in a normal browser.
+
+---
+
+## Where should you place it?
+
+Example:
+
+```javascript
+const { app, BrowserWindow } = require("electron");
+
+function createWindow() {
+    const win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
+
+    win.setMenu(null);
+
+    // Open Chrome Developer Tools
+    win.webContents.openDevTools();
+
+    win.loadFile("index.html");
+}
+
+app.whenReady().then(createWindow);
+```
+
+---
+
+## What happens internally?
+
+When Electron creates a `BrowserWindow`, it also creates a Chromium rendering process.
+
+The architecture looks like this:
+
+```
+Electron Main Process
+          |
+          |
+    BrowserWindow
+          |
+          |
+     webContents
+          |
+          |
+ Chromium Renderer Process
+          |
+          |
+ HTML + CSS + JavaScript
+```
+
+`webContents` acts as a bridge that allows the Main Process to control the Chromium page.
+
+---
+
+## Different Modes of Developer Tools
+
+### 1. Docked Mode (Default)
+
+Developer Tools appear attached to the Electron window.
+
+```javascript
+win.webContents.openDevTools();
+```
+
+---
+
+### 2. Detached Window
+
+Developer Tools open in a separate window.
+
+```javascript
+win.webContents.openDevTools({
+    mode: "detach"
+});
+```
+
+---
+
+### 3. Bottom Dock
+
+Developer Tools appear at the bottom.
+
+```javascript
+win.webContents.openDevTools({
+    mode: "bottom"
+});
+```
+
+---
+
+## Common Uses of DevTools
+
+* Checking HTML elements
+* Debugging JavaScript errors
+* Viewing `console.log()` messages
+* Inspecting CSS styles
+* Monitoring network requests
+* Checking performance issues
+
+---
+
+## Production Note
+
+Developer Tools should generally be disabled in production applications because they are mainly intended for development and debugging.
+
+A common practice is to enable them only during development.
+
+Example:
+
+```javascript
+if (process.env.NODE_ENV === "development") {
+    win.webContents.openDevTools();
+}
+```
+
+---
+
+## Summary
+
+```
+BrowserWindow
+      |
+      |
+ webContents
+      |
+      |
+ Controls the Chromium page
+      |
+      |
+ openDevTools() → Opens Developer Tools
+```
+
+`win.webContents.openDevTools()` is a debugging feature that gives you access to Chromium's developer tools inside your Electron application.
