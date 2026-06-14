@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* Reset some default styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    /* Navigation bar styling */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #222;
+        padding: 10px 20px;
+        color: #fff;
+    }
+
+    /* Logo */
+    .logo h3 {
+        font-size: 1.5rem;
+        color: #ffcc00;
+    }
+
+    /* Navigation links */
+    .nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .nav ul li a:hover {
+        color: #ffcc00;
+    }
+
+    /* Search bar */
+    .search input[type="search"] {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        outline: none;
+        font-size: 1rem;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        nav {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .nav ul {
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .search {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .search input[type="search"] {
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+    <nav>
+        <div class="logo">
+            <h3>Xander</h3>
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+        <div class="search">
+            <form action="">
+                <input type="search" name="" placeholder="Search" id="">
+            </form>
+        </div>
+    </nav>
+</body>
+</html>
